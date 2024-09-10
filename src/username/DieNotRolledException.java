@@ -12,10 +12,10 @@ package username;
  */
 public class DieNotRolledException extends RuntimeException {
     /**
-     * Throws runtimeexception and displays message
-     * @param errorMessage The message displayed as th eerror
+     * returns the messgae of Die not rolling
+     * @return returns the message
      */
-    public DieNotRolledException(String errorMessage){
-        super(errorMessage);
+    public String getMessage(){
+        return "Die did not roll";
     }
 }
