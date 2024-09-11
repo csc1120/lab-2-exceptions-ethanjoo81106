@@ -15,7 +15,6 @@ import java.util.Random;
 public class Die {
     private int currentValue;
     private final int numSides;
-    private Random random;
 
     /**
      * Main constructor for die class
@@ -37,7 +36,9 @@ public class Die {
      * rolls the die to a random number
      */
     public void roll(){
-        currentValue = random.nextInt(numSides-1) + 1;
+        Random r = new Random();
+        currentValue = r.nextInt(numSides - 1) + 1;
+
     }
 
 
