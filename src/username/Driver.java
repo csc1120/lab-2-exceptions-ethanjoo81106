@@ -17,6 +17,7 @@ public class Driver {
     private static int sidesPerDie;
     private static int rolls;
     private static final Scanner SC = new Scanner(System.in);
+    private static final int MAXSIDES = 6;
     public static void main(String[] args){
         System.out.print("please enter the # of dice, how many sides per die");
         System.out.println(", and the number of roles in the following format");
@@ -34,7 +35,6 @@ public class Driver {
             System.out.println(num);
         }
 
-
     }
 
     /**
@@ -44,23 +44,40 @@ public class Driver {
     public static int[] getInput(){
         String input = SC.nextLine();
         String[] nums = input.split(" ");
+        int[] ary = null;
 
-        while (nums.length != 3) {
-            System.out.println("There should only be 3 parameters that are all integers");
-            input = SC.nextLine();
-            nums = input.split(" ");
-        }
+        boolean allIntegers = false;
 
-        int[] ary = new int[nums.length];
-
-        try{
-            int i = 0;
-            for(String num : nums) {
-                ary[i] = Integer.parseInt(num);
-                i++;
+        while(!allIntegers){
+            while (nums.length != 3) {
+                System.out.println("There should only be 3 parameters that are all integers");
+                input = SC.nextLine();
+                nums = input.split(" ");
             }
-        } catch (NumberFormatException e) {
-            System.out.println("please only input numbers");
+
+            ary = new int[nums.length];
+
+            try{
+                int i = 0;
+                for(String num : nums) {
+                    ary[i] = Integer.parseInt(num);
+                    i++;
+                }
+
+                if(ary[0] < 4 && ary[1] < MAXSIDES + 1){
+                    allIntegers = true;
+                } else{
+                    System.out.print("You can have no more than 3 ");
+                    System.out.println("dice and a maximum of 6 sides per die");
+                    input = SC.nextLine();
+                    nums = input.split(" ");
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("please only input numbers");
+                input = SC.nextLine();
+                nums = input.split(" ");
+            }
         }
 
         return ary;
