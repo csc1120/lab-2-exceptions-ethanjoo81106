@@ -18,6 +18,7 @@ public class Driver {
     private static int rolls;
     private static final Scanner SC = new Scanner(System.in);
     private static final int MAXSIDES = 6;
+    private static final int MAXDICE = 3;
     public static void main(String[] args){
         System.out.print("please enter the # of dice, how many sides per die");
         System.out.println(", and the number of roles in the following format");
@@ -64,7 +65,7 @@ public class Driver {
                     i++;
                 }
 
-                if(ary[0] < 4 && ary[1] < MAXSIDES + 1){
+                if(ary[0] < MAXDICE + 1 && ary[1] < MAXSIDES + 1){
                     allIntegers = true;
                 } else{
                     System.out.print("You can have no more than 3 ");
@@ -106,18 +107,20 @@ public class Driver {
      */
     public static int[] rollDice(Die[] dice, int numSides, int numRolls){
 
-        int[] intList = new int[dice.length];
+        int[] intList = new int[(dice.length * numSides) - (dice.length-1)];
 
-        for(int i = 0; i < dice.length; i++){
-            dice[i].roll();
-            intList[i] = dice[i].getCurrentValue();
+        for(int x = 0; x < numRolls; x++){
+            int total = 0;
+
+            for(Die d: dice){
+                d.roll();
+                total += d.getCurrentValue();
+            }
+
+            intList[total-2]++;
         }
 
         return intList;
-
-        /*
-        FIX THIS FUNCTION TMR
-         */
 
     }
 
@@ -128,6 +131,7 @@ public class Driver {
      */
     public static int findMax(int[] rolls){
         return 0;
+
     }
 
     /**

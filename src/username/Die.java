@@ -37,8 +37,7 @@ public class Die {
      */
     public void roll(){
         Random r = new Random();
-        currentValue = r.nextInt(numSides - 1) + 1;
-
+        currentValue = r.nextInt(numSides) + 1;
     }
 
 
