@@ -19,10 +19,14 @@ public class Driver {
     private static final Scanner SC = new Scanner(System.in);
     private static final int MAXSIDES = 6;
     private static final int MAXDICE = 3;
+    private static final int SCALEMULTI = 10;
+
     public static void main(String[] args){
+
         System.out.print("please enter the # of dice, how many sides per die");
         System.out.println(", and the number of roles in the following format");
         System.out.println("(Dice) (Sides) (Rolls)");
+
         int[] die = getInput();
         numDice = die[0];
         sidesPerDie = die[1];
@@ -32,9 +36,7 @@ public class Driver {
 
         int[] rollNumbers = rollDice(dice, sidesPerDie, rolls);
 
-        for(int num: rollNumbers){
-            System.out.println(num);
-        }
+        report(numDice, rollNumbers, findMax(rollNumbers));
 
     }
 
@@ -130,17 +132,42 @@ public class Driver {
      * @return returns an int of max value
      */
     public static int findMax(int[] rolls){
-        return 0;
+        int maxval = -1;
+        int maxIndex = -1;
 
+        for (int i = 0; i < rolls.length; i++){
+            if(rolls[i] > maxval) {
+                maxval = rolls[i];
+                maxIndex = i;
+            }
+        }
+
+        return maxIndex;
     }
 
     /**
      * prints out main statistics of class
      * @param numDice number of dice
-     * @param rolls values of rolls
+     * @param rollsData values of rolls
      * @param max max value in array
      */
-    public static void report(int numDice, int[] rolls, int max){
+    public static void report(int numDice, int[] rollsData, int max){
+        double scale = (double) rollsData[max] / SCALEMULTI;
+        System.out.println(scale);
+        String tempStars;
 
+        int currentNum = numDice;
+        for (int i = 0; i < rollsData.length; i++){
+            tempStars = "";
+
+            for(int n = 0; n < rollsData[i] / scale; n++){
+                tempStars += "*";
+
+            }
+
+            System.out.printf("%-2d: %-5d %s %n", currentNum, rollsData[i], tempStars);
+
+            currentNum++;
+        }
     }
 }

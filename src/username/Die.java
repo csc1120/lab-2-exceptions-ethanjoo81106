@@ -21,14 +21,20 @@ public class Die {
      * @param numSides input of # of sides
      */
     public Die(int numSides){
+        currentValue = 0;
         this.numSides = numSides;
     }
 
     /**
      * returns the value of the die
      * @return currentValue of die
+     * @throws DieNotRolledException throws an exception when die getCurrentValue was called
+     * before roll was called
      */
     public int getCurrentValue(){
+        if (currentValue == 0){
+            throw new DieNotRolledException("Die has no not been rolled yet");
+        }
         return currentValue;
     }
 
