@@ -3,7 +3,7 @@
  * Lab 2 - Exceptions
  * Main Driver class
  * Name: Ethan
- * Last Updated: FIX
+ * Last Updated: Joo
  */
 package username;
 
