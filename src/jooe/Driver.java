@@ -5,7 +5,7 @@
  * Name: Ethan
  * Last Updated: Joo
  */
-package username;
+package jooe;
 
 import java.util.Scanner;
 
